@@ -1,1 +1,35 @@
-<h1>hello world</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>获取URL参数示例</title>
+</head>
+<body>
+    <h1>hello world</h1>
+    <script>
+    // 获取当前URL
+    var currentUrl = window.location.href;
+
+    // 解析URL获取查询字符串部分
+    var queryString = currentUrl.split('?')[1];
+
+    // 如果有查询字符串，则解析参数
+    if (queryString) {
+        var params = {};
+        var paramPairs = queryString.split('&');
+        for (var i = 0; i < paramPairs.length; i++) {
+            var paramPair = paramPairs[i].split('=');
+            params[paramPair[0]] = paramPair[1];
+        }
+
+        // 输出获取到的参数
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
+                console.log(key + ': ' + params[key]);
+            }
+        }
+    } else {
+        console.log('当前URL没有查询字符串。');
+    }
+    </script>
+</body>
+</html>
