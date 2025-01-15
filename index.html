@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>获取URL参数示例</title>
+    <title>获取并展示URL参数</title>
 </head>
 <body>
     <h1>hello world</h1>
+    <p id="params"></p>
     <script>
     // 获取当前URL
     var currentUrl = window.location.href;
@@ -21,12 +22,21 @@
             params[paramPair[0]] = paramPair[1];
         }
 
-        // 输出获取到的参数
+        // 创建一个段落元素来显示参数
+        var paramsParagraph = document.createElement('p');
+        paramsParagraph.id = 'params';
+
+        // 将参数值添加到段落元素中
         for (var key in params) {
             if (params.hasOwnProperty(key)) {
-                console.log(key + ': ' + params[key]);
+                var paramText = document.createTextNode(key + ': ' + params[key]);
+                paramsParagraph.appendChild(paramText);
+                paramsParagraph.appendChild(document.createElement('br')); // 添加换行
             }
         }
+
+        // 将段落元素添加到页面中
+        document.body.appendChild(paramsParagraph);
     } else {
         console.log('当前URL没有查询字符串。');
     }
